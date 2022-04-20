@@ -1,23 +1,32 @@
-import 'package:flutter/material.dart';
-import 'package:to_do_app/screens/HomePage.dart';
+// ignore_for_file: prefer_const_constructors
 
-void main() => runApp(MyApp());
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../screens/home_page.dart';
+import '../models/mission_data.dart';
+import 'models/my_theme_data.dart';
+
+void main() {
+//*MultiProvider kullandım. Bu şekilde istediğim kadar providerı listeye ekleyerek kullanabiliyorum.  
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider<MissionData>(
+        create: (BuildContext context) => MissionData()),
+    ChangeNotifierProvider<MyThemeData>(create: (context) => MyThemeData())
+  ], child: MyApp()));
+}
 
 class MyApp extends StatelessWidget {
+  MyApp({Key? key}) : super(key: key);
+
+  
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-          primaryColor: Colors.green,//*Ana renk olarak seçiyoruz.
-          primarySwatch: Colors.green,//*Uygulamada genel olarka bu rengi kullanıcam dedim.
-          //!accent color ile tuş renklerini ayarladı ama kalkmış kullanımdan yeni yöntemi nasıl kullanıcam anlamadım bakıcam.
-          scaffoldBackgroundColor: Colors.green,
-          appBarTheme: AppBarTheme(color: Colors.green),
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-          textTheme: TextTheme(
-              subtitle1: TextStyle(color: Colors.white),
-              headline3: TextStyle(color: Colors.white))),
+
+//*theme olarak ayrı bir class oluşturdum ve orada tanımladım. daha sonra bu tanımladığım ThemeData'yı provider vasıtası ile buraya aktardım. Ayrıca yine aynı yerde bu ThemeData'nın renk özelliğini değiştirmek için bir metod tanımladım ve bu metod çalıştığında notifylisteners diyerek tüm programa bahse konu bilginin dağıtılmasını sağladım. İlerde istersem başka theme özelliklerini değiştirmek için de aynı classı kullanabilirim.
+      theme: Provider.of<MyThemeData>(context).myThemeData,
       home: HomePage(),
     );
   }
