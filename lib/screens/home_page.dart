@@ -143,21 +143,29 @@ class HomePage extends StatelessWidget {
               margin: EdgeInsets.all(10),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20), color: Colors.white),
-              child: ListView.builder(
-                itemCount: Provider.of<MissionData>(context).missions.length,
-                itemBuilder: ((context, index) => ItemCard(
-                      Provider.of<MissionData>(context).missions[index].title,
-                      Provider.of<MissionData>(context).missions[index].isDone,
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: ListView.builder(
+//*Son eklenen görevin üst tarafa gelmesi için reverse true yaptık ama bu sefer de görevler yukarıda değil altta oluyordu. Bu nedenle align ile sarmalayıp topcenter dedik. Ama bunun çalışması için shrinkwrap de true yapılmak zorunda. Yoksa işe yaramıyor.
+                  reverse: true,
+                  shrinkWrap: true,
+                  itemCount: Provider.of<MissionData>(context).missions.length,
+                  itemBuilder: ((context, index) => ItemCard(
+                        Provider.of<MissionData>(context).missions[index].title,
+                        Provider.of<MissionData>(context)
+                            .missions[index]
+                            .isDone,
 //*alttaki isimsiz fonksiyonu ItemCard'ta tanımladığımız 3. parametre bool alan bir fonksiyon olduğu için(onChanged de kullanıldığı için) aşağıdaki gibi bool değer alan bir fonksiyon şeklinde tanımladık ve o değeri kullanmadığımız için de _ koyarak geçtik.
-                      (_) {
-                        Provider.of<MissionData>(context, listen: false)
-                            .missionStatus(index);
-                      },
-                      (_) {
-                        Provider.of<MissionData>(context, listen: false)
-                            .deleteMission(index);
-                      },
-                    )),
+                        (_) {
+                          Provider.of<MissionData>(context, listen: false)
+                              .missionStatus(index);
+                        },
+                        (_) {
+                          Provider.of<MissionData>(context, listen: false)
+                              .deleteMission(index);
+                        },
+                      )),
+                ),
               ),
             ),
           ),
