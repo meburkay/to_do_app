@@ -15,7 +15,7 @@ class MyThemeData with ChangeNotifier {
   }
 
   Future<void> spCreate() async {
-    //log('spCreate çalıştı');
+    log('spCreate çalıştı');
 
     sp = await SharedPreferences.getInstance();
 
@@ -28,15 +28,15 @@ class MyThemeData with ChangeNotifier {
     log(themeColor.toString(), name: 'getten sonra değişen renk');
     changeThemeColor(themeColor);
     notifyListeners();
-    //log('spGet çalıştı');
-    //log(themeColor.toString(), name: 'degisenRenk');
+    log('spGet çalıştı');
+    log(themeColor.toString(), name: 'degisenRenk');
   }
 
   void spSet() {
     int themeColorInt = themeColor.value;
 
     sp?.setInt('color', themeColorInt);
-    //log(themeColor.toString(), name: 'setIntRenk');
+    log(themeColor.toString(), name: 'setIntRenk');
   }
 
   ThemeData myThemeData = ThemeData(
