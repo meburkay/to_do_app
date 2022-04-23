@@ -1,13 +1,18 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../screens/home_page.dart';
 import '../models/mission_data.dart';
 import 'models/my_theme_data.dart';
 
-void main() {
-//*MultiProvider kullandım. Bu şekilde istediğim kadar providerı listeye ekleyerek kullanabiliyorum.  
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await MyThemeData().spCreate();
+
+//*MultiProvider kullandım. Bu şekilde istediğim kadar providerı listeye ekleyerek kullanabiliyorum.
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider<MissionData>(
         create: (BuildContext context) => MissionData()),
@@ -16,12 +21,14 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({Key? key}) : super(key: key);
-
-  
-
+ 
   @override
   Widget build(BuildContext context) {
+    /*Provider.of<MyThemeData>(context).spGet();
+    
+    Provider.of<MyThemeData>(context)
+        .changeThemeColor(Provider.of<MyThemeData>(context).themeColor);  */
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
 

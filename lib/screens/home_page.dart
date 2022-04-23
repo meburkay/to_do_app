@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do_app/models/my_theme_data.dart';
@@ -19,6 +21,7 @@ class HomePage extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          log(Provider.of<MyThemeData>(context,listen: false).themeColor.toString());
 //*Alttan çıkan menü gibi birşey. Bunun içine istediğin dizaynı yaparak kullanıyorsun. Sen ne oluşturursan alttan o geliyor.
           showModalBottomSheet(
 //*bunu false yapınca klavyenin altında kalıyor kutu. Sebebini anlamadım.
