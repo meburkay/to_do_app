@@ -83,6 +83,7 @@ class HomePage extends StatelessWidget {
 //*MissionData'daki addMission metodunu provider vasıtası ile tetikliyoruz. listen false yapıyoruz çünkü bu dinleyen değil iş yaptıran bir komut. bu metoda TextField'da yazılı olan metini yani textController.text'i atıyoruz.
                           Provider.of<MissionData>(context, listen: false)
                               .addMission(textController.text);
+                          
 //*Bu komutla TextField penceresindeki yazılan karakterleri temizliyoruz. Yoksa ikinci görev için tekrar açtığımızda aynı yazılar yeniden geliyor.
                           textController.clear();
 //*göre eklemek için tuşa bastığımızda otomatik olarak ekranı kapatarak görevler ekranına dönülmesini sağlıyor.

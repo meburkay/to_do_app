@@ -11,6 +11,7 @@ import 'models/my_theme_data.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await MyThemeData().spCreate();
+  await MissionData().spCreate();
 
 //*MultiProvider kullandım. Bu şekilde istediğim kadar providerı listeye ekleyerek kullanabiliyorum.
   runApp(MultiProvider(providers: [
@@ -21,7 +22,6 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
- 
   @override
   Widget build(BuildContext context) {
     /*Provider.of<MyThemeData>(context).spGet();
