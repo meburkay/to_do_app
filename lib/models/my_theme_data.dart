@@ -51,6 +51,7 @@ class MyThemeData with ChangeNotifier {
       style: ElevatedButton.styleFrom(primary: Colors.green),
     ),
     primaryColor: Colors.green, //*Ana renk olarak seçiyoruz.
+    primaryColorLight: Colors.green[100],
 
     /* primarySwatch:
         Colors.green, */ //*Uygulamada genel olarka bu rengi kullanıcam dedim.
@@ -78,6 +79,25 @@ class MyThemeData with ChangeNotifier {
       floatingActionButtonTheme:
           FloatingActionButtonThemeData(backgroundColor: themeColor),
       primaryColor: themeColor, //*Ana renk olarak seçiyoruz.
+
+/*You can use these helper methods to change it. Just replace
+
+newHueValue: with any double btw 0 and 360
+newSaturationValue: with any double btw 0 and 1
+newLightnessValue: with any double btw 0 and 1
+Color changeColorHue(Color color) => HSLColor.fromColor(color).withHue(newHueValue).toColor();
+
+Color changeColorSaturation(Color color) => HSLColor.fromColor(color).withSaturation(newSaturationValue).toColor();
+
+Color changeColorLightness(Color color) => HSLColor.fromColor(color).withLightness(newLightnessValue).toColor();
+
+Similarly you can use: HSVColor for HSV (hue, saturation, value).
+
+more: https://api.flutter.dev/flutter/painting/HSLColor-class.html*/
+
+//*Gelen themeColor'ın lightness ayarını üstteki bilgileri kullanarak değiştirdim. Direk return kısmındaki kodu yazarak yapılabiliyor.
+      primaryColorLight:
+          HSLColor.fromColor(themeColor).withLightness(0.9).toColor(),
       //primarySwatch:themeColor, //*Uygulamada genel olarka bu rengi kullanıcam dedim.
       //!accent color ile tuş renklerini ayarladı ama kalkmış kullanımdan yeni yöntemi nasıl kullanıcam anlamadım bakıcam.
       scaffoldBackgroundColor: themeColor,
