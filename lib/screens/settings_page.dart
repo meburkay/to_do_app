@@ -32,6 +32,7 @@ class _SettingsPageState extends State<SettingsPage> {
           child: Column(
             //mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              SizedBox(height: MediaQuery.of(context).size.height*.05,),
               Container(
                 height: MediaQuery.of(context).size.height * 0.2,
                 width: MediaQuery.of(context).size.height * 0.2,
