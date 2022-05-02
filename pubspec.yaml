@@ -34,9 +34,20 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+
+#*State yönetimi için kullanılan ana paket.
   provider: ^6.0.2
+
+#*Paletten direk tema rengi seçmek için bu paketi yükledim ve kullandım.
   flutter_colorpicker: ^1.0.3
+
+#*Local hafızada veri tutmak için yüklediğimiz paket.
   shared_preferences: ^2.0.13
+
+#*firebase özelliklerini kullanmak için core paketi öncelikli olarak yüklenmek zorunda.
+  firebase_core: ^1.15.0
+#*Autentication özellikleri için bu paketi yüklüyoruz.
+  firebase_auth: ^3.3.16
 
 dev_dependencies:
   flutter_test:
