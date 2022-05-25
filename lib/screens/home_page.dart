@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do_app/models/my_theme_data.dart';
 import 'package:to_do_app/screens/settings_page.dart';
+import 'package:to_do_app/screens/signin_page.dart';
 import '../models/mission_data.dart';
+import '../services/auth.dart';
 import '../widgets/item_card.dart';
 
 class HomePage extends StatelessWidget {
@@ -21,7 +23,9 @@ class HomePage extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          log(Provider.of<MyThemeData>(context,listen: false).themeColor.toString());
+          log(Provider.of<MyThemeData>(context, listen: false)
+              .themeColor
+              .toString());
 //*Alttan çıkan menü gibi birşey. Bunun içine istediğin dizaynı yaparak kullanıyorsun. Sen ne oluşturursan alttan o geliyor.
           showModalBottomSheet(
 //*bunu false yapınca klavyenin altında kalıyor kutu. Sebebini anlamadım.
@@ -83,7 +87,7 @@ class HomePage extends StatelessWidget {
 //*MissionData'daki addMission metodunu provider vasıtası ile tetikliyoruz. listen false yapıyoruz çünkü bu dinleyen değil iş yaptıran bir komut. bu metoda TextField'da yazılı olan metini yani textController.text'i atıyoruz.
                           Provider.of<MissionData>(context, listen: false)
                               .addMission(textController.text);
-                          
+
 //*Bu komutla TextField penceresindeki yazılan karakterleri temizliyoruz. Yoksa ikinci görev için tekrar açtığımızda aynı yazılar yeniden geliyor.
                           textController.clear();
 //*göre eklemek için tuşa bastığımızda otomatik olarak ekranı kapatarak görevler ekranına dönülmesini sağlıyor.
@@ -122,7 +126,24 @@ class HomePage extends StatelessWidget {
               size: 40,
             ),
             padding: EdgeInsets.only(right: 30),
-          )
+          ),
+          IconButton(
+            onPressed: () {
+//*Auth servisinde tanımladığımız logout metodunu provider vasıtası ile kullanıyoruz.
+              Provider.of<Auth>(context,listen: false).signOut();
+//*Signin sayfasına geçmek için verilen Navigator komutu.
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => SignIn()));
+            },
+            icon: Icon(
+              color: Colors.white,
+              Icons.logout,
+              size: 40,
+            ),
+            padding: EdgeInsets.only(right: 30),
+          ),
         ],
         centerTitle: true,
         title: Text(
