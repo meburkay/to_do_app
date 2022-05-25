@@ -49,6 +49,9 @@ dependencies:
 #*Autentication özellikleri için bu paketi yüklüyoruz.
   firebase_auth: ^3.3.16
 
+#*Authentication ekranındaki buttonları otomatik oluşturabildiğimiz paket. Gayet kullanışlı.
+  flutter_signin_button: ^2.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
